@@ -1,26 +1,32 @@
+const historial = [];
+
 function mostrarMenu() {
     console.log(" == Elegí una operación ==");
     console.log("1. Sumar");
     console.log("2. Restar");
     console.log("3. Multiplicar");
     console.log("4. Dividir");
-    console.log("5. Salir");
+    console.log("5. Historial de operaciones");
+    console.log("6. Salir");
     console.log("============================");
 }
 
 function sumar(a, b) {
     const resultado = a + b;
     console.log("El resultado de la suma es: " + resultado);
+    historial.push(`Suma: ${a} + ${b} = ${resultado}`);
 }
 
 function restar(a, b) {
     const resultado = a - b;
     console.log("El resultado de la resta es: " + resultado);
+    historial.push(`Resta: ${a} - ${b} = ${resultado}`);
 }
 
 function multiplicar(a, b) {
     const resultado = a * b;
     console.log("El resultado de la multiplicación es: " + resultado);
+    historial.push(`Multiplicación: ${a} * ${b} = ${resultado}`);
 }
 
 function dividir(a, b) {
@@ -31,6 +37,19 @@ function dividir(a, b) {
     }
     const resultado = a / b;
     console.log("El resultado de la división es: " + resultado);
+    historial.push(`División: ${a} * ${b} = ${resultado}`);
+}
+
+function verHistorial() {
+    console.log("== Historial de operaciones ==");
+    if (historial.length === 0) {
+        console.log("Aún no se ejecuto ninguna operación");
+    } else {
+        for (let i = 0; i < historial.length; i++) {
+            console.log((i + 1) + ". " + historial[i])
+        }
+    }
+    console.log("============================")
 }
 
 function pedirOpcion() {
@@ -50,7 +69,8 @@ function iniciarCalculadora() {
             "2. Restar\n" +
             "3. Multiplicar\n" +
             "4. Dividir\n" +
-            "5. Salir"
+            "5. Ver Historial\n" +
+            "6. Salir"
         );
 
         switch (opcion) {
@@ -75,6 +95,10 @@ function iniciarCalculadora() {
                 break;
             }
             case "5": {
+                verHistorial();
+                break;
+            }
+            case "6": {
                 const salir = confirm("¿Seguro que querés salir?");
                 if (salir) {
                     alert("Gracias por usar la calculadora");
